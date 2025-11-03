@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Service App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      height: 100vh;
+      background: linear-gradient(135deg, #e63946, #f77f00);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+
+    header p {
+      font-size: 1.3em;
+      max-width: 600px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: #1d3557;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #f77f00;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      color: #1d3557;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    /* Features grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .feature-card h3 {
+      color: #e63946;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 0.95em;
+      line-height: 1.5em;
+    }
+
+    /* Prototype button */
+    .button {
+      display: inline-block;
+      background: #e63946;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      margin-top: 15px;
+    }
+
+    .button:hover {
+      background: #d62828;
+    }
+
+    /* Contact form */
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input, form textarea {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 100%;
+      font-size: 1em;
+    }
+
+    form button {
+      background: #1d3557;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    form button:hover {
+      background: #457b9d;
+    }
+
+    footer {
+      background: #1d3557;
+      color: white;
+      text-align: center;
+      padding: 25px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Emergency Service App</h1>
+    <p>Fast. Silent. Reliable. Help when every second counts.</p>
+    <a href="#features" class="button">Learn More</a>
+  </header>
+
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#prototype">Prototype</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container">
+    <section id="features">
+      <h2>Key Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Silent SOS</h3>
+          <p>Send your emergency alert with one silent tap, keeping you safe in high-risk situations.</p>
+        </div>
+        <div class="feature-card">
+          <h3>GPS Tracking</h3>
+          <p>Accurate real-time location data shared directly with first responders.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Secure Data</h3>
+          <p>All personal and medical information encrypted and HIPAA, GDPR, ISO 27001 compliant.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Stress-Based Testing</h3>
+          <p>Usability tested under emergency scenarios and biometric stress tracking for accuracy.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Wearable Integration</h3>
+          <p>Connect seamlessly with smartwatches and medical alert devices for quick alerts.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Custom Profiles</h3>
+          <p>Share allergies, medical conditions, and emergency instructions with responders.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="prototype">
+      <h2>View Prototype</h2>
+      <p>Click below to explore our working prototype and see the app in action:</p>
+      <a href="https://marvelapp.com/prototype/agh2aj1/screen/98009500" target="_blank" class="button">Try Prototype</a>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Have questions or feedback? Reach out to our development team:</p>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 Emergency Service App | Designed for safety and innovation
+  </footer>
+
+</body>
+</html>
