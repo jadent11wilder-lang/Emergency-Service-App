@@ -168,7 +168,10 @@
       padding: 25px 20px;
     }
 
-    /* Prototype Modal */
+    /* ================================
+       PHONE SIMULATOR + MODAL
+       ================================ */
+
     #prototypeModal {
       display: none;
       position: fixed;
@@ -178,45 +181,50 @@
       background: rgba(0,0,0,0.7);
       justify-content: center;
       align-items: center;
+      backdrop-filter: blur(4px);
     }
 
-    #prototypeContent {
-      background: white;
-      border-radius: 10px;
-      padding: 30px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
+    .phone-frame {
+      width: 350px;
+      height: 650px;
+      background: #000;
+      border-radius: 40px;
+      padding: 15px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
       opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 0.4s, transform 0.4s;
+      transform: translateY(40px);
+      transition: all 0.4s ease;
     }
 
-    #prototypeContent.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .option-button {
-      display: block;
+    .phone-inner {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 6px;
-      font-size: 1em;
-      cursor: pointer;
-      background: #1d3557;
-      color: white;
-      transition: 0.3s;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 30px;
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+      position: relative;
     }
 
-    .option-button:hover {
-      background: #457b9d;
+    .phone-notch {
+      width: 180px;
+      height: 30px;
+      background: #000;
+      border-radius: 0 0 20px 20px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
     }
-
   </style>
 </head>
+
 <body>
 
   <header>
@@ -235,30 +243,12 @@
     <section id="features">
       <h2>Key Features</h2>
       <div class="features-grid">
-        <div class="feature-card">
-          <h3>Silent SOS</h3>
-          <p>Send your emergency alert with one silent tap, keeping you safe in high-risk situations.</p>
-        </div>
-        <div class="feature-card">
-          <h3>GPS Tracking</h3>
-          <p>Accurate real-time location data shared directly with first responders.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Secure Data</h3>
-          <p>All personal and medical information encrypted and HIPAA, GDPR, ISO 27001 compliant.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Stress-Based Testing</h3>
-          <p>Usability tested under emergency scenarios and biometric stress tracking for accuracy.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Wearable Integration</h3>
-          <p>Connect seamlessly with smartwatches and medical alert devices for quick alerts.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Custom Profiles</h3>
-          <p>Share allergies, medical conditions, and emergency instructions with responders.</p>
-        </div>
+        <div class="feature-card"><h3>Silent SOS</h3><p>Send an emergency alert with one silent tap.</p></div>
+        <div class="feature-card"><h3>GPS Tracking</h3><p>Real-time location shared with responders.</p></div>
+        <div class="feature-card"><h3>Secure Data</h3><p>HIPAA, GDPR, ISO 27001 compliant.</p></div>
+        <div class="feature-card"><h3>Stress-Based Testing</h3><p>Built for real emergency use.</p></div>
+        <div class="feature-card"><h3>Wearable Integration</h3><p>Compatible with smartwatches.</p></div>
+        <div class="feature-card"><h3>Custom Profiles</h3><p>Share medical details instantly.</p></div>
       </div>
     </section>
 
@@ -271,7 +261,6 @@
 
     <section id="contact">
       <h2>Contact Us</h2>
-      <p>Have questions or feedback? Reach out to our development team:</p>
       <form>
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
@@ -285,108 +274,115 @@
     &copy; 2025 Emergency Service App | Designed for safety and innovation
   </footer>
 
-  <!-- Interactive Prototype Modal -->
+  <!-- PHONE SIMULATOR MODAL -->
   <div id="prototypeModal">
-    <div id="prototypeContent">
-      <div id="stepContent"></div>
+    <div id="prototypeContent" class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-inner">
+        <div id="stepContent"></div>
+      </div>
     </div>
   </div>
 
   <script>
     const modal = document.getElementById("prototypeModal");
-    const prototypeContent = document.getElementById("prototypeContent");
+    const phoneFrame = document.getElementById("prototypeContent");
     const stepContent = document.getElementById("stepContent");
 
     function startInteractive() {
       modal.style.display = "flex";
-      fadeIn(prototypeContent);
+      fadeIn(phoneFrame);
       stepWelcome();
     }
 
     function fadeIn(element) {
-      element.classList.remove("show");
-      setTimeout(() => element.classList.add("show"), 10);
+      element.style.opacity = "0";
+      element.style.transform = "translateY(40px)";
+      setTimeout(() => {
+        element.style.opacity = "1";
+        element.style.transform = "translateY(0)";
+      }, 20);
     }
 
     function stepWelcome() {
       stepContent.innerHTML = `
         <h2>Emergency Service</h2>
-        <button class="option-button" onclick="stepService()">Continue</button>
+        <button class="button" onclick="stepService()">Continue</button>
       `;
-      fadeIn(prototypeContent);
+      fadeIn(phoneFrame);
     }
 
     function stepService() {
       stepContent.innerHTML = `
-        <h2>What Service Do You Require?</h2>
-        <button class="option-button" onclick="stepFire()">Fire Fighters</button>
-        <button class="option-button" onclick="stepPolice()">Police</button>
-        <button class="option-button" onclick="stepAmbulance()">Ambulance</button>
+        <h2>What Service Do You Need?</h2>
+        <button class="button" onclick="stepFire()">Fire</button>
+        <button class="button" onclick="stepPolice()">Police</button>
+        <button class="button" onclick="stepAmbulance()">Ambulance</button>
       `;
-      fadeIn(prototypeContent);
+      fadeIn(phoneFrame);
     }
 
     function stepFire() {
       stepContent.innerHTML = `
         <h2>Are you safe?</h2>
-        <button class="option-button" onclick="alertFireYes()">Yes</button>
-        <button class="option-button" onclick="alertFireNo()">No</button>
+        <button class="button" onclick="alertFireYes()">Yes</button>
+        <button class="button" onclick="alertFireNo()">No</button>
       `;
-      fadeIn(prototypeContent);
+      fadeIn(phoneFrame);
     }
 
     function alertFireYes() {
-      stepContent.innerHTML = `<h2>Help is on the way to your location!</h2>`;
-      fadeIn(prototypeContent);
+      stepContent.innerHTML = `<h2>Help is on the way!</h2>`;
+      fadeIn(phoneFrame);
     }
 
     function alertFireNo() {
-      stepContent.innerHTML = `<h2>Evacuate safely and fast! Help is on the way!</h2>`;
-      fadeIn(prototypeContent);
+      stepContent.innerHTML = `<h2>Evacuate immediately! Help is on the way!</h2>`;
+      fadeIn(phoneFrame);
     }
 
     function stepPolice() {
       stepContent.innerHTML = `
         <h2>Are you safe?</h2>
-        <button class="option-button" onclick="alertPoliceYes()">Yes</button>
-        <button class="option-button" onclick="alertPoliceNo()">No</button>
+        <button class="button" onclick="alertPoliceYes()">Yes</button>
+        <button class="button" onclick="alertPoliceNo()">No</button>
       `;
-      fadeIn(prototypeContent);
+      fadeIn(phoneFrame);
     }
 
     function alertPoliceYes() {
-      stepContent.innerHTML = `<h2>Help is on the way to your location!</h2>`;
-      fadeIn(prototypeContent);
+      stepContent.innerHTML = `<h2>Help is coming to your location!</h2>`;
+      fadeIn(phoneFrame);
     }
 
     function alertPoliceNo() {
-      stepContent.innerHTML = `<h2>Quietly find a hiding spot! Help is on the way!</h2>`;
-      fadeIn(prototypeContent);
+      stepContent.innerHTML = `<h2>Hide quietly! Help is on the way!</h2>`;
+      fadeIn(phoneFrame);
     }
 
     function stepAmbulance() {
       stepContent.innerHTML = `
         <h2>Are you safe?</h2>
-        <button class="option-button" onclick="alertAmbulanceYes()">Yes</button>
-        <button class="option-button" onclick="alertAmbulanceNo()">No</button>
+        <button class="button" onclick="alertAmbulanceYes()">Yes</button>
+        <button class="button" onclick="alertAmbulanceNo()">No</button>
       `;
-      fadeIn(prototypeContent);
+      fadeIn(phoneFrame);
     }
 
     function alertAmbulanceYes() {
-      stepContent.innerHTML = `<h2>Help is on the way to your location!</h2>`;
-      fadeIn(prototypeContent);
+      stepContent.innerHTML = `<h2>An ambulance is on the way!</h2>`;
+      fadeIn(phoneFrame);
     }
 
     function alertAmbulanceNo() {
-      stepContent.innerHTML = `<h2>Stay calm! Fast help is on the way!</h2>`;
-      fadeIn(prototypeContent);
+      stepContent.innerHTML = `<h2>Stay calm — fast help is coming!</h2>`;
+      fadeIn(phoneFrame);
     }
 
     modal.addEventListener("click", (e) => {
-      if(e.target === modal) modal.style.display = "none";
+      if (e.target === modal) modal.style.display = "none";
     });
-
   </script>
+
 </body>
 </html>
